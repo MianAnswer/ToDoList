@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
+import config from '../config'
 
+const { uri } = config.db
 const db = mongoose.connection
 
 db.on('connecting', () => {
@@ -31,6 +33,9 @@ db.on('all', () => {
 })
 
 export default function connectDB() {
-  mongoose.connect('mongodb+srv://admin:admin@cluster0.lauobkk.mongodb.net/test')
+  mongoose.set('strictQuery', true)
+  mongoose.connect(uri).catch((err) => {
+    if (err) console.log('error connecting db')
+  })
   return db
 }
