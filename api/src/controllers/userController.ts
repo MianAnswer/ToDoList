@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
-import registerUser from '../services/userService'
+import addUser from '../services/userService'
 import validateUser from '../utils/userValidation'
 import { IUser } from '../models/IUser'
 
-const register = async function (req: Request, res: Response, next: NextFunction) {
+const registerUser = async function (req: Request, res: Response, next: NextFunction) {
   const { body } = req
   const { error, value } = validateUser(body)
 
@@ -14,8 +14,9 @@ const register = async function (req: Request, res: Response, next: NextFunction
   }
 
   const user: IUser = value as IUser
-  registerUser(user)
+
+  addUser(user)
   res.json(value)
 }
 
-export default register
+export default registerUser

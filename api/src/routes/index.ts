@@ -1,10 +1,10 @@
 import { Router } from 'express'
 import toDoRouter from './toDoRoute'
-import registerRouter from './userRoute'
+import userRouter from './userRoute'
 
 const router = Router()
 
 router.use('/todo', toDoRouter)
-router.use('/register', registerRouter)
+router.use('/user', userRouter)
 
 export default router

@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import register from '../controllers/userController'
+import registerUser from '../controllers/userController'
 
-const registerRouter = Router()
+const userRouter = Router()
 
-registerRouter.route('/')
-  .post(register)
+userRouter.route('/')
+  .post(registerUser)
 
-export default registerRouter
+export default userRouter
