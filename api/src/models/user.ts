@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose'
-import bcrypt from 'bcrypt'
+import { IUser } from './IUser'
 
-const userSchema = new Schema({
+const userSchema = new Schema<IUser>({
   email: {
     type: String,
     lowercase: true,
@@ -13,14 +13,6 @@ const userSchema = new Schema({
     type: String,
     required: [true, "can't be blank"],
   },
-})
-
-userSchema.pre('save', function (next) {
-  if (this.isModified('password')) {
-    this.password = bcrypt.hashSync(this.password, 10)
-  }
-
-  next()
 })
 
 export default mongoose.model('User', userSchema, 'users')
