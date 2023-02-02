@@ -4,9 +4,7 @@ import registerRouter from './userRoute'
 
 const router = Router()
 
-router.use([
-  toDoRouter,
-  registerRouter,
-])
+router.use('/todo', toDoRouter)
+router.use('/register', registerRouter)
 
 export default router

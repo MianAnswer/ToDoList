@@ -3,7 +3,7 @@ import register from '../controllers/userController'
 
 const registerRouter = Router()
 
-registerRouter.route('/register')
+registerRouter.route('/')
   .post(register)
 
 export default registerRouter
