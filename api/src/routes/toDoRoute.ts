@@ -5,10 +5,12 @@ import {
   updateToDoItem,
   deleteToDoItem,
 } from '../controllers/toDoController'
+import verifyUser from '../middlewares/authVerification'
 
 const toDoRouter = Router()
 
 toDoRouter.route('/')
+  .all(verifyUser)
   .get(getToDoItem)
   .post(addToDoItem)
   .put(updateToDoItem)

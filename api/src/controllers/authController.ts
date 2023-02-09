@@ -1,7 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
+import jwt from 'jsonwebtoken'
 import validateUser from '../utils/userValidation'
 import { IUser } from '../models/IUser'
 import isUserAuthentic from '../services/authService'
+import config from '../config'
 
 export const login = async function (req: Request, res: Response, next: NextFunction) {
   const { body } = req
@@ -19,6 +21,18 @@ export const login = async function (req: Request, res: Response, next: NextFunc
     return
   }
 
+  const { privateKey } = config.jwt
+  const token = jwt.sign(
+    { user: user.email },
+    privateKey as jwt.Secret,
+    { algorithm: 'RS256', expiresIn: '1h' },
+  )
+
+  res.cookie(
+    'jwt_token',
+    token,
+    { httpOnly: true, secure: false, sameSite: true },
+  )
   res.redirect('/todo')
 }
 
