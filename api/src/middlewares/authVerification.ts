@@ -13,6 +13,8 @@ const verifyUser = function (req: Request, res: Response, next: NextFunction) {
       res.send('Not Verified')
     }
   }
+
+  res.send('Need JWT token')
 }
 
 export default verifyUser
