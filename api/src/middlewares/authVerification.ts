@@ -9,12 +9,13 @@ const verifyUser = (req: Request, res: Response, next: NextFunction) => {
     try {
       jwt.verify(jwtToken, publicKey as jwt.Secret, { algorithms: ['RS256'] })
       next()
+      return
     } catch (err) {
       res.send('Not Verified')
     }
+  } else {
+    res.send('Need JWT token')
   }
-
-  res.send('Need JWT token')
 }
 
 export default verifyUser
