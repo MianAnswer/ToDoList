@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 import User from '../models/User'
 import { IUser } from '../models/IUser'
 
-const addUser = async function (user: IUser) {
+const addUser = async (user: IUser) => {
   const userFound = await User.findOne({ email: user.email }, { password: 0 })
   if (userFound) {
     console.log('User already exists')

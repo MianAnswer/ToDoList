@@ -3,7 +3,7 @@ import addUser from '../services/userService'
 import validateUser from '../utils/userValidation'
 import { IUser } from '../models/IUser'
 
-const registerUser = async function (req: Request, res: Response, next: NextFunction) {
+const registerUser = async (req: Request, res: Response, next: NextFunction) => {
   const { body } = req
   const { error, value } = validateUser(body)
 

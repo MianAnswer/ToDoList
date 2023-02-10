@@ -5,7 +5,7 @@ import { IUser } from '../models/IUser'
 import isUserAuthentic from '../services/authService'
 import config from '../config'
 
-export const login = async function (req: Request, res: Response, next: NextFunction) {
+export const login = async (req: Request, res: Response) => {
   const { body } = req
   const { error, value } = validateUser(body)
   const user: IUser = value
@@ -36,7 +36,7 @@ export const login = async function (req: Request, res: Response, next: NextFunc
   res.redirect('/todo')
 }
 
-export const logout = async function (req: Request, res: Response, next: NextFunction) {
+export const logout = async (req: Request, res: Response, next: NextFunction) => {
   next()
   res.send('Logout')
 }

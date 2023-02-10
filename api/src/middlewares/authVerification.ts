@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import jwt from 'jsonwebtoken'
 import config from '../config'
 
-const verifyUser = function (req: Request, res: Response, next: NextFunction) {
+const verifyUser = (req: Request, res: Response, next: NextFunction) => {
   const jwtToken = req.headers.authorization?.split(' ')[1]
   const { publicKey } = config.jwt
   if (jwtToken) {
